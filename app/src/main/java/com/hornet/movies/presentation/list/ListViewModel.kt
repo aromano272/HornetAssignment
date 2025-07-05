@@ -2,8 +2,8 @@ package com.hornet.movies.presentation.list
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
-import com.hornet.movies.data.MoviesService
 import com.hornet.movies.data.MovieListPagingSource
+import com.hornet.movies.data.MoviesService
 import com.hornet.movies.presentation.core.BaseViewModel
 import com.hornet.movies.presentation.core.TopBarViewState
 

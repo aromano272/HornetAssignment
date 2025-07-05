@@ -7,5 +7,5 @@ data class Person(
     val name: String = "",
     val department: String? = "",
     private val profile_path: String? = "",
-    val image: String = profile_path.pathToUrl()
+    val image: String = profile_path.pathToUrl(),
 )

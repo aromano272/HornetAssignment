@@ -1,7 +1,7 @@
 package com.hornet.movies.di
 
-import com.hornet.movies.data.MoviesService
 import com.hornet.movies.data.MovieListPagingSource
+import com.hornet.movies.data.MoviesService
 import com.hornet.movies.presentation.list.ListViewModel
 import kotlinx.serialization.json.Json
 import org.koin.androidx.viewmodel.dsl.viewModel

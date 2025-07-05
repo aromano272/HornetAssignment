@@ -62,7 +62,14 @@ class MoviesService private constructor() {
     }
 
     private fun configureHeaders() {
-        addHeader("X-Device-Name", String.format("%s %s", encodeForHeaderValue(Build.MANUFACTURER), encodeForHeaderValue(Build.MODEL)))
+        addHeader(
+            "X-Device-Name",
+            String.format(
+                "%s %s",
+                encodeForHeaderValue(Build.MANUFACTURER),
+                encodeForHeaderValue(Build.MODEL)
+            )
+        )
         addHeader("X-Device-Version", "Android ${Build.VERSION.RELEASE}")
         addHeader("Accept-Language", Locale.getDefault().language)
         addHeader("Accept", "application/json")
@@ -102,9 +109,11 @@ class MoviesService private constructor() {
         addConverterFactory(
             MoshiConverterFactory.create(
                 Moshi.Builder()
-            .add(Date::class.java, Rfc3339DateJsonAdapter().nullSafe())
-            .add(KotlinJsonAdapterFactory())
-            .build()))
+                    .add(Date::class.java, Rfc3339DateJsonAdapter().nullSafe())
+                    .add(KotlinJsonAdapterFactory())
+                    .build()
+            )
+        )
         return this
     }
 

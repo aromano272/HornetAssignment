@@ -45,7 +45,7 @@ fun <
     navController: NavController,
     viewModel: VM,
     navigationHandler: NavController.(TNavigation) -> Unit,
-    content: @Composable (state: TViewState, onIntent: (TIntent) -> Unit) -> Unit
+    content: @Composable (state: TViewState, onIntent: (TIntent) -> Unit) -> Unit,
 ) {
     val currentOnStart by rememberUpdatedState(viewModel::onStart)
     val currentOnStop by rememberUpdatedState(viewModel::onStop)
@@ -83,7 +83,10 @@ fun <
                                 IconButton(onClick = {
                                     topBar.onBackHandler?.invoke() ?: navController.navigateUp()
                                 }) {
-                                    Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = null)
+                                    Icon(
+                                        Icons.AutoMirrored.Filled.ArrowBack,
+                                        contentDescription = null
+                                    )
                                 }
                             }
                         },

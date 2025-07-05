@@ -9,5 +9,5 @@ data class MovieDetails(
     private val credits: Credits = Credits(),
     val actors: List<Person> = credits.actors,
     val director: Person? = credits.director,
-    val production_company:ProductionCompany? = production_companies.firstOrNull()
+    val production_company: ProductionCompany? = production_companies.firstOrNull(),
 )

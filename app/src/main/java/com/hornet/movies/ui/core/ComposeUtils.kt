@@ -8,28 +8,19 @@ import android.text.style.StyleSpan
 import android.text.style.UnderlineSpan
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.ArrowDropDown
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.DropdownMenu
-import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
-import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
@@ -37,19 +28,11 @@ import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldColors
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalFocusManager
-import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -58,10 +41,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
-import com.hornet.movies.R
 
 object Spacing {
     val dp4 = 4.dp
@@ -74,19 +54,30 @@ object Spacing {
     val dp64 = 64.dp
 }
 
-@Composable fun Spacer4() = Spacer(modifier = Modifier.size(Spacing.dp4))
-@Composable fun Spacer8() = Spacer(modifier = Modifier.size(Spacing.dp8))
-@Composable fun Spacer16() = Spacer(modifier = Modifier.size(Spacing.dp16))
-@Composable fun Spacer24() = Spacer(modifier = Modifier.size(Spacing.dp24))
-@Composable fun Spacer32() = Spacer(modifier = Modifier.size(Spacing.dp32))
-@Composable fun Spacer40() = Spacer(modifier = Modifier.size(Spacing.dp40))
-@Composable fun Spacer48() = Spacer(modifier = Modifier.size(Spacing.dp48))
-@Composable fun Spacer64() = Spacer(modifier = Modifier.size(Spacing.dp64))
+@Composable
+fun Spacer4() = Spacer(modifier = Modifier.size(Spacing.dp4))
+@Composable
+fun Spacer8() = Spacer(modifier = Modifier.size(Spacing.dp8))
+@Composable
+fun Spacer16() = Spacer(modifier = Modifier.size(Spacing.dp16))
+@Composable
+fun Spacer24() = Spacer(modifier = Modifier.size(Spacing.dp24))
+@Composable
+fun Spacer32() = Spacer(modifier = Modifier.size(Spacing.dp32))
+@Composable
+fun Spacer40() = Spacer(modifier = Modifier.size(Spacing.dp40))
+@Composable
+fun Spacer48() = Spacer(modifier = Modifier.size(Spacing.dp48))
+@Composable
+fun Spacer64() = Spacer(modifier = Modifier.size(Spacing.dp64))
 
-@Composable fun ColumnScope.SpacerWeight() = Spacer(modifier = Modifier.weight(1f))
-@Composable fun RowScope.SpacerWeight() = Spacer(modifier = Modifier.weight(1f))
+@Composable
+fun ColumnScope.SpacerWeight() = Spacer(modifier = Modifier.weight(1f))
+@Composable
+fun RowScope.SpacerWeight() = Spacer(modifier = Modifier.weight(1f))
 
-@Composable fun RowScope.LoadingButtonIcon() {
+@Composable
+fun RowScope.LoadingButtonIcon() {
     CircularProgressIndicator(
         modifier = Modifier
             .then(Modifier.size(Spacing.dp24))
@@ -96,7 +87,8 @@ object Spacing {
     )
 }
 
-@Composable fun RowScope.SecondaryLoadingButtonIcon() {
+@Composable
+fun RowScope.SecondaryLoadingButtonIcon() {
     CircularProgressIndicator(
         modifier = Modifier
             .then(Modifier.size(Spacing.dp24))
@@ -109,12 +101,13 @@ object Spacing {
 @Composable
 fun composableIf(
     bool: Boolean,
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ): (@Composable () -> Unit)? = if (bool) {
     content
 } else null
 
-@Composable fun DrawableIcon(
+@Composable
+fun DrawableIcon(
     @DrawableRes id: Int,
     tint: Color = Color.Unspecified,
     modifier: Modifier = Modifier,
@@ -127,19 +120,22 @@ fun composableIf(
     )
 }
 
-@Composable fun LoadingButton(modifier: Modifier = Modifier) {
+@Composable
+fun LoadingButton(modifier: Modifier = Modifier) {
     Button(modifier = modifier, onClick = {}) {
         LoadingButtonIcon()
     }
 }
 
-@Composable fun SecondaryLoadingButton(modifier: Modifier = Modifier) {
+@Composable
+fun SecondaryLoadingButton(modifier: Modifier = Modifier) {
     OutlinedButton(modifier = modifier, onClick = {}) {
         SecondaryLoadingButtonIcon()
     }
 }
 
-@Composable fun LoadingIconButton(modifier: Modifier = Modifier) {
+@Composable
+fun LoadingIconButton(modifier: Modifier = Modifier) {
     CircularProgressIndicator(
         modifier = modifier.then(Modifier.size(Spacing.dp16)),
         color = Color.White,
@@ -147,12 +143,13 @@ fun composableIf(
     )
 }
 
-@Composable fun PrimaryButton(
+@Composable
+fun PrimaryButton(
     modifier: Modifier = Modifier,
     text: String,
     colors: ButtonColors = ButtonDefaults.buttonColors(),
     enabled: Boolean = true,
-    onClick: () -> Unit
+    onClick: () -> Unit,
 ) {
     Button(
         modifier = modifier,
@@ -164,11 +161,12 @@ fun composableIf(
     }
 }
 
-@Composable fun SecondaryButton(
+@Composable
+fun SecondaryButton(
     modifier: Modifier = Modifier,
     text: String,
     enabled: Boolean = true,
-    onClick: () -> Unit
+    onClick: () -> Unit,
 ) {
     OutlinedButton(
         modifier = modifier,
@@ -300,10 +298,25 @@ fun Spanned.toAnnotatedString(): AnnotatedString = buildAnnotatedString {
             is StyleSpan -> when (span.style) {
                 Typeface.BOLD -> addStyle(SpanStyle(fontWeight = FontWeight.Bold), start, end)
                 Typeface.ITALIC -> addStyle(SpanStyle(fontStyle = FontStyle.Italic), start, end)
-                Typeface.BOLD_ITALIC -> addStyle(SpanStyle(fontWeight = FontWeight.Bold, fontStyle = FontStyle.Italic), start, end)
+                Typeface.BOLD_ITALIC -> addStyle(
+                    SpanStyle(
+                        fontWeight = FontWeight.Bold,
+                        fontStyle = FontStyle.Italic
+                    ), start, end
+                )
             }
-            is UnderlineSpan -> addStyle(SpanStyle(textDecoration = TextDecoration.Underline), start, end)
-            is ForegroundColorSpan -> addStyle(SpanStyle(color = Color(span.foregroundColor)), start, end)
+
+            is UnderlineSpan -> addStyle(
+                SpanStyle(textDecoration = TextDecoration.Underline),
+                start,
+                end
+            )
+
+            is ForegroundColorSpan -> addStyle(
+                SpanStyle(color = Color(span.foregroundColor)),
+                start,
+                end
+            )
         }
     }
 }

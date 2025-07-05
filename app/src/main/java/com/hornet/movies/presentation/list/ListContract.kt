@@ -1,18 +1,15 @@
 package com.hornet.movies.presentation.list
 
 import androidx.paging.Pager
-import androidx.paging.PagingData
 import com.hornet.movies.data.model.movie.Movie
 import com.hornet.movies.data.model.movie.MovieDetails
 import com.hornet.movies.presentation.core.Args
 import com.hornet.movies.presentation.core.CommonModelState
 import com.hornet.movies.presentation.core.CommonViewState
 import com.hornet.movies.presentation.core.Intent
-import com.hornet.movies.presentation.core.ModelState
 import com.hornet.movies.presentation.core.ModelStateWithCommonState
 import com.hornet.movies.presentation.core.Navigation
 import com.hornet.movies.presentation.core.ViewModel
-import com.hornet.movies.presentation.core.ViewState
 import com.hornet.movies.presentation.core.ViewStateWithCommonState
 
 interface ListContract : ViewModel<
@@ -55,8 +52,7 @@ data class ListModelState(
     }
 }
 
-sealed interface ListNavigation : Navigation {
-}
+sealed interface ListNavigation : Navigation
 
 sealed interface Resource<out T> {
     data object Loading : Resource<Nothing>

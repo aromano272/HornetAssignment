@@ -6,7 +6,6 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.cancel
 import kotlinx.coroutines.cancelChildren
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
@@ -17,12 +16,8 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.filterNot
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
-import kotlinx.coroutines.job
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.plus
 import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
-import kotlin.coroutines.CoroutineContext
 
 data class CommonViewState(
     val topBarViewState: TopBarViewState? = null,
@@ -39,7 +34,7 @@ data class CommonModelState(
     val successAlert: String? = null,
 ) {
     fun toViewState(
-        topBarViewState: TopBarViewState? = null
+        topBarViewState: TopBarViewState? = null,
     ): CommonViewState = CommonViewState(
         topBarViewState = topBarViewState,
         errorAlert = errorAlert,
@@ -119,12 +114,14 @@ abstract class BaseViewModel<
 
     private val _viewStateFlow by lazy { MutableStateFlow(mapViewState(initialModelState)) }
     final override val viewStateFlow: StateFlow<TViewState> by lazy {
-        modelStateFlow.map { mapViewState(it) }.stateIn(viewModelScope, SharingStarted.Lazily, mapViewState(initialModelState))
+        modelStateFlow.map { mapViewState(it) }
+            .stateIn(viewModelScope, SharingStarted.Lazily, mapViewState(initialModelState))
     }
 
     private val _navigationFlow = MutableSharedFlow<NavigationEvent<TNavigation>>(replay = 10)
 
-    protected val startedCoroutineScope = CoroutineScope(viewModelScope.coroutineContext + SupervisorJob())
+    protected val startedCoroutineScope =
+        CoroutineScope(viewModelScope.coroutineContext + SupervisorJob())
 
     override fun onStart() {
         println("${this::class.simpleName} onStart")
@@ -162,6 +159,7 @@ abstract class BaseViewModel<
     final override fun launch(func: suspend CoroutineScope.(currentState: TModelState) -> Unit) {
         viewModelScope.launch { func(modelState) }
     }
+
     final override fun launchJob(
         func: suspend CoroutineScope.(currentState: TModelState) -> Unit,
     ): Job = viewModelScope.launch { func(modelState) }
@@ -169,6 +167,7 @@ abstract class BaseViewModel<
     final override fun launchOnStarted(func: suspend CoroutineScope.(currentState: TModelState) -> Unit) {
         startedCoroutineScope.launch { func(modelState) }
     }
+
     final override fun launchOnStartedJob(
         func: suspend CoroutineScope.(currentState: TModelState) -> Unit,
     ): Job = startedCoroutineScope.launch { func(modelState) }
@@ -232,12 +231,13 @@ abstract class BaseViewModel<
 interface Args
 interface Intent
 interface ModelState
+
 @Stable
 interface ViewState
 interface Navigation
 
 class NavigationEvent<TNavigation : Navigation>(
-    val navigation: TNavigation
+    val navigation: TNavigation,
 ) {
     var wasHandled: Boolean = false
         private set

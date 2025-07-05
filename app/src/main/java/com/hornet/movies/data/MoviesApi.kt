@@ -1,8 +1,8 @@
 package com.hornet.movies.data
+
 import com.hornet.movies.data.model.meta.Genres
 import com.hornet.movies.data.model.movie.MovieDetails
 import com.hornet.movies.data.model.movie.MovieResults
-import com.hornet.movies.data.model.movie.Movie
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -16,7 +16,8 @@ interface MoviesApi {
         @Query("with_original_language") originalLanguage: String = "en",
         @Query("include_video") includeVideo: Boolean = false,
         @Query("include_adult") includeAdult: Boolean = false,
-        @Query("language") language: String = "en-US"): MovieResults
+        @Query("language") language: String = "en-US",
+    ): MovieResults
 
 
     @GET(value = "https://api.themoviedb.org/3/movie/{movie_id}?append_to_response=credits")
