@@ -12,6 +12,12 @@ composeBom = "2025.06.01"
 moshiKotlin = "1.13.0"
 retrofit = "2.11.0"
 okhttp = "4.12.0"
+coil = "2.7.0"
+koinBom = "3.5.6"
+navigation = "2.8.0-beta03"
+androidx-paging-version = "3.3.6"
+kotlinxSerializationJson = "1.6.3"
+kotlinxSerialization = "2.0.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -36,8 +42,22 @@ squareup-retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = 
 squareup-okhttp3-logginginterceptor = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "okhttp" }
 squareup-okhttp3 = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
 
+androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation" }
+coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
+koin-bom = { group = "io.insert-koin", name = "koin-bom", version.ref = "koinBom" }
+koin-core = { group = "io.insert-koin", name = "koin-core" }
+koin-android = { group = "io.insert-koin", name = "koin-android" }
+koin-core-coroutines = { group = "io.insert-koin", name = "koin-core-coroutines" }
+koin-androidx-compose = { group = "io.insert-koin", name = "koin-androidx-compose" }
+kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
+
+androix-paging-runtime = { group = "androidx.paging", name = "paging-runtime", version.ref = "androidx-paging-version" }
+androix-paging-compose = { group = "androidx.paging", name = "paging-compose", version.ref = "androidx-paging-version" }
+
+
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlinxSerialization" }
 
