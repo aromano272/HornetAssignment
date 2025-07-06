@@ -2,15 +2,10 @@ package com.hornet.movies.presentation.list
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
-import androidx.paging.flatMap
-import androidx.paging.map
 import com.hornet.movies.data.MovieListPagingSource
 import com.hornet.movies.data.MoviesService
 import com.hornet.movies.presentation.core.BaseViewModel
 import com.hornet.movies.presentation.core.TopBarViewState
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.onEach
 
 
 class ListViewModel(
@@ -72,6 +67,7 @@ class ListViewModel(
                     )
                 }
             }
+
             is ListIntent.GenreClicked -> updateState { state ->
                 state.copy(selectedGenre = intent.genre.takeUnless { it == state.selectedGenre })
             }
@@ -89,7 +85,6 @@ class ListViewModel(
             val details = moviesService.getMovieDetails(movieId)
             modelState.movieDetailsMap + (movieId to Resource.Loaded(details))
         } catch (ex: Exception) {
-            println("boomshaka")
             ex.printStackTrace()
             modelState.movieDetailsMap + (movieId to Resource.Error)
         }

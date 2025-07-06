@@ -2,7 +2,6 @@ package com.hornet.movies.presentation.list
 
 import androidx.paging.Pager
 import com.hornet.movies.data.model.meta.Genre
-import com.hornet.movies.data.model.meta.Genres
 import com.hornet.movies.data.model.movie.Movie
 import com.hornet.movies.data.model.movie.MovieDetails
 import com.hornet.movies.presentation.core.Args

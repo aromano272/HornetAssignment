@@ -19,8 +19,13 @@ androidx-paging-version = "3.3.6"
 kotlinxSerializationJson = "1.6.3"
 kotlinxSerialization = "2.0.0"
 
+turbine = "1.1.0"
+mockk = "1.13.11"
+coroutines = "1.7.3"
+
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -54,6 +59,9 @@ kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-
 androix-paging-runtime = { group = "androidx.paging", name = "paging-runtime", version.ref = "androidx-paging-version" }
 androix-paging-compose = { group = "androidx.paging", name = "paging-compose", version.ref = "androidx-paging-version" }
 
+mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
+turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
+coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

@@ -24,7 +24,6 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -156,9 +155,11 @@ private fun MovieItem(
                     contentDescription = movie.title,
                     contentScale = ContentScale.Crop,
                 )
-                Box(Modifier
-                    .matchParentSize()
-                    .background(Color.Black.copy(alpha = .7f)))
+                Box(
+                    Modifier
+                        .matchParentSize()
+                        .background(Color.Black.copy(alpha = .7f))
+                )
                 AsyncImage(
                     modifier = Modifier
                         .padding(Spacing.dp8)

@@ -56,23 +56,31 @@ object Spacing {
 
 @Composable
 fun Spacer4() = Spacer(modifier = Modifier.size(Spacing.dp4))
+
 @Composable
 fun Spacer8() = Spacer(modifier = Modifier.size(Spacing.dp8))
+
 @Composable
 fun Spacer16() = Spacer(modifier = Modifier.size(Spacing.dp16))
+
 @Composable
 fun Spacer24() = Spacer(modifier = Modifier.size(Spacing.dp24))
+
 @Composable
 fun Spacer32() = Spacer(modifier = Modifier.size(Spacing.dp32))
+
 @Composable
 fun Spacer40() = Spacer(modifier = Modifier.size(Spacing.dp40))
+
 @Composable
 fun Spacer48() = Spacer(modifier = Modifier.size(Spacing.dp48))
+
 @Composable
 fun Spacer64() = Spacer(modifier = Modifier.size(Spacing.dp64))
 
 @Composable
 fun ColumnScope.SpacerWeight() = Spacer(modifier = Modifier.weight(1f))
+
 @Composable
 fun RowScope.SpacerWeight() = Spacer(modifier = Modifier.weight(1f))
 
