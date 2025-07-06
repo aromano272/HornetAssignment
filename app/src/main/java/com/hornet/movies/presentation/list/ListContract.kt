@@ -10,6 +10,7 @@ import com.hornet.movies.presentation.core.CommonViewState
 import com.hornet.movies.presentation.core.Intent
 import com.hornet.movies.presentation.core.ModelStateWithCommonState
 import com.hornet.movies.presentation.core.Navigation
+import com.hornet.movies.presentation.core.Resource
 import com.hornet.movies.presentation.core.ViewModel
 import com.hornet.movies.presentation.core.ViewStateWithCommonState
 
@@ -62,8 +63,3 @@ data class ListModelState(
 
 sealed interface ListNavigation : Navigation
 
-sealed interface Resource<out T> {
-    data object Loading : Resource<Nothing>
-    data class Loaded<out T>(val data: T) : Resource<T>
-    data object Error : Resource<Nothing>
-}

@@ -39,7 +39,7 @@ import com.hornet.movies.data.model.movie.Movie
 import com.hornet.movies.data.model.movie.MovieDetails
 import com.hornet.movies.presentation.list.ListIntent
 import com.hornet.movies.presentation.list.ListViewState
-import com.hornet.movies.presentation.list.Resource
+import com.hornet.movies.presentation.core.Resource
 import com.hornet.movies.ui.core.LabelText
 import com.hornet.movies.ui.core.Spacer8
 import com.hornet.movies.ui.core.Spacing
@@ -213,11 +213,13 @@ private fun MovieDetailsSection(
     details: MovieDetails,
 ) {
     details.production_company?.let {
-        AsyncImage(
-            modifier = Modifier.size(40.dp),
-            model = it.logo,
-            contentDescription = "Production Company",
-        )
+        it.logo?.let { logo ->
+            AsyncImage(
+                modifier = Modifier.size(40.dp),
+                model = logo,
+                contentDescription = "Production Company",
+            )
+        }
         Text(text = "Production Company: ${it.name}")
     }
     details.director?.let {
