@@ -2,10 +2,15 @@ package com.hornet.movies.presentation.list
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
+import androidx.paging.flatMap
+import androidx.paging.map
 import com.hornet.movies.data.MovieListPagingSource
 import com.hornet.movies.data.MoviesService
 import com.hornet.movies.presentation.core.BaseViewModel
 import com.hornet.movies.presentation.core.TopBarViewState
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onEach
 
 
 class ListViewModel(
@@ -23,6 +28,18 @@ class ListViewModel(
     ),
 ), ListContract {
 
+    init {
+        launch {
+            try {
+                val result = moviesService.getGenres()
+                val genresMap = result.genres.associateBy { it.id }
+                updateState { it.copy(genresMap = genresMap) }
+            } catch (ex: Exception) {
+                showErrorAlert("Failed to load genres")
+            }
+        }
+    }
+
     override fun mapViewState(state: ListModelState): ListViewState = ListViewState(
         commonState = state.commonState.toViewState(
             topBarViewState = TopBarViewState(
@@ -31,6 +48,8 @@ class ListViewModel(
             )
         ),
         pager = state.pager,
+        genresMap = state.genresMap,
+        selectedGenre = state.selectedGenre,
         expandedMovieIds = state.expandedMovieIds,
         movieDetailsMap = state.movieDetailsMap,
     )
@@ -41,7 +60,7 @@ class ListViewModel(
                 val movieId = intent.movie.id
                 val expand = movieId !in state.expandedMovieIds
                 if (expand && state.movieDetailsMap[movieId] !is Resource.Loaded) {
-                    loadMovieDetails(movieId)
+                    launch { loadMovieDetails(movieId) }
                 }
                 updateState {
                     it.copy(
@@ -52,6 +71,9 @@ class ListViewModel(
                         },
                     )
                 }
+            }
+            is ListIntent.GenreClicked -> updateState { state ->
+                state.copy(selectedGenre = intent.genre.takeUnless { it == state.selectedGenre })
             }
         }
     }
@@ -67,6 +89,8 @@ class ListViewModel(
             val details = moviesService.getMovieDetails(movieId)
             modelState.movieDetailsMap + (movieId to Resource.Loaded(details))
         } catch (ex: Exception) {
+            println("boomshaka")
+            ex.printStackTrace()
             modelState.movieDetailsMap + (movieId to Resource.Error)
         }
 

@@ -1,4 +1,4 @@
-package com.imbaland.movies.domain.model
+package com.hornet.movies.data.model.person
 
 import com.hornet.movies.util.pathToUrl
 

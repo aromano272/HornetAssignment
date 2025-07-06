@@ -21,3 +21,4 @@
 #-renamesourcefileattribute SourceFile
 -keep class com.hornet.movies.data.model.movie.** { *; }
 -keep class com.hornet.movies.data.model.meta.** { *; }
+-keep class com.hornet.movies.data.model.person.** { *; }

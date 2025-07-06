@@ -2,7 +2,7 @@ package com.hornet.movies.data.model.movie
 
 import com.hornet.movies.data.model.meta.ProductionCompany
 import com.hornet.movies.data.model.person.Credits
-import com.imbaland.movies.domain.model.Person
+import com.hornet.movies.data.model.person.Person
 
 data class MovieDetails(
     private val production_companies: List<ProductionCompany> = listOf(),
