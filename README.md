@@ -13,7 +13,7 @@ resembles the layout of a final product.
 No persistent storage or error handling of edge cases is required. No caching is required and you
 won't be penalized for loading the same data multiple times.
 
-## Notes
+## Notes from applicant
 
 - The API currently sorts movie results by `vote_count`. Based on the project requirements, which may involve filtering or halting pagination for movies with a `vote_average` below 7, this sorting method could cause pagination to cease prematurely. This might happen if a page includes movies with a low `vote_average` yet high `vote_count`, even if subsequent pages could contain qualifying movies. The existing API sorting logic has been retained without modification. Further clarification on whether sorting should ideally be by `vote_average` to align with the specified filtering criteria could be beneficial.
 - The presentation logic and base `Screen.kt` utilize preferred MVI/MVVM base classes.
